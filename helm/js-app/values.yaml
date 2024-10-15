@@ -1,0 +1,16 @@
+argocd:
+  replicaCount: 1
+
+image:
+  repository: "<your_account_id>.dkr.ecr.eu-central-1.amazonaws.com/<project_name>"
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer  
+  port: 3000 
+  annotations:
+    security_groups: "your_node_app_sg"  
+    subnets: subnet-1,subnet-2,subnet-3  # Use actual subnet IDs without angle brackets
+
+resources: {}
