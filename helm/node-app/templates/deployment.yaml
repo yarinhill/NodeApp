@@ -19,11 +19,11 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: {{ .Values.service.port }}  # This should remain as is
           env:
             - name: MONGO_URI
-              value: {{ .Values.env.MONGO_URI }}
+              value: {{ .Values.env.MONGO_URI | quote }}  # Use quote to ensure it's treated as a string
             - name: PORT
-              value: {{ .Values.service.port }}
+              value: {{ .Values.service.port | quote }}  # Ensure PORT is treated as a string
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
