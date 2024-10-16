@@ -1,0 +1,6 @@
+mongo:
+  image: "mongo:5.0.8"
+  rootUsername: "root"
+  rootPassword: "password"
+  database: "mydatabase"
+  port: 27017

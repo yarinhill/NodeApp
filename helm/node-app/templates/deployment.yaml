@@ -20,5 +20,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.port }}
+          env:
+            - name: MONGO_URI
+              value: {{ .Values.env.MONGO_URI }}
+            - name: PORT
+              value: {{ .Values.env.PORT | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

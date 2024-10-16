@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mongodb
+description: A Helm chart for deploying MongoDB
+type: application   # Explicitly stating that this is an application chart
+version: 0.1.0
+appVersion: "5.0.8"
