@@ -11,12 +11,22 @@ mongoose.connect(mongoUri, {
 })
   .then(() => {
     console.log('Connected to MongoDB!');
-    app.get('/', (req, res) => res.send('Successfully connected to DB ✅'));
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
-    app.get('/', (req, res) => res.send('Not connected to the DB ❌'));
   });
+
+app.use((req, res, next) => {
+  if (mongoose.connection.readyState === 1) {
+    next(); 
+  } else {
+    res.status(503).send('Not connected to the DB ❌'); 
+  }
+});
+
+app.get('/', (req, res) => {
+  res.send('Successfully connected to DB ✅');
+});
 
 app.listen(port, () => {
   console.log(`App running at http://localhost:${port}`);
