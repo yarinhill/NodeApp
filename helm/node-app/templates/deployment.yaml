@@ -24,6 +24,6 @@ spec:
             - name: MONGO_URI
               value: {{ .Values.env.MONGO_URI }}
             - name: PORT
-              value: {{ .Values.env.PORT | quote }}
+              value: {{ .Values.service.port }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

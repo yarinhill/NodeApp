@@ -1,5 +1,4 @@
-argocd:
-  replicaCount: 1
+replicaCount: 1
 
 image:
   repository: "<account_id>.dkr.ecr.<region>.amazonaws.com/<project_name>"
@@ -12,8 +11,8 @@ service:
   annotations:
     security_groups: "your_node_app_sg"  
     subnets: subnet-1,subnet-2,subnet-3  # Use actual subnet IDs without angle brackets
+
 env:
   MONGO_URI: "mongodb://root:password@mongo:27017/mydatabase?authSource=admin"
-  PORT: 3000
 
 resources: {}
