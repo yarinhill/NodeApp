@@ -2,7 +2,7 @@ argocd:
   replicaCount: 1
 
 image:
-  repository: "<your_account_id>.dkr.ecr.eu-central-1.amazonaws.com/<project_name>"
+  repository: "<account_id>.dkr.ecr.<region>.amazonaws.com/<project_name>"
   tag: "latest"
   pullPolicy: IfNotPresent
 
