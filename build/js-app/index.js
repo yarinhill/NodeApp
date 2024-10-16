@@ -1,14 +1,24 @@
-const http = require('http');
+const express = require('express');
+const mongoose = require('mongoose');
 
-const hostname = '0.0.0.0';
-const port = 3000;
+const app = express();
+const port = process.env.PORT || 3000;
+const mongoUri = process.env.MONGO_URI;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello There\n');
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => {
+    console.log('Connected to MongoDB!');
+    app.get('/', (req, res) => res.send('Successfully connected to DB ✅'));
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+    app.get('/', (req, res) => res.send('Not connected to the DB ❌'));
+  });
+
+app.listen(port, () => {
+  console.log(`App running at http://localhost:${port}`);
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
