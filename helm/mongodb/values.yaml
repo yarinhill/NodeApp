@@ -1,3 +1,6 @@
+argocd:
+  replicaCount: 1
+
 mongo:
   image: "mongo:5.0.8"
   rootUsername: "root"
